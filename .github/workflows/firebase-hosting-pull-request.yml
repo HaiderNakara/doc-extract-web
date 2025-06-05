@@ -20,7 +20,11 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-      - run: pnpm i && pnpm run build
+      - name: Install and Build
+        run: pnpm i && pnpm run build
+        env:
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
