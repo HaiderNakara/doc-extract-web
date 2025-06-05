@@ -101,12 +101,6 @@ export function Features() {
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                0
-              </div>
-              <div className="text-sm text-muted-foreground">Dependencies</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                 MIT
               </div>
               <div className="text-sm text-muted-foreground">
