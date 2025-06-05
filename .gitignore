@@ -29,7 +29,6 @@ next-env.d.ts
 
 # firebase
 .firebase/
-firebase.json
 firebase.config.json
 firebase-debug.log
 .firebaserc
