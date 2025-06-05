@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Download, Github, Zap } from "lucide-react";
 import { details } from "./const_data/config";
+import posthog from "posthog-js";
 
 export function Hero() {
   return (
@@ -31,6 +32,10 @@ export function Hero() {
           <Button
             size="lg"
             className="bg-blue-600 text-white hover:bg-blue-700"
+            onClick={() => {
+              posthog.capture("npm-install-clicked");
+              navigator.clipboard.writeText("npm install doc-extract@latest");
+            }}
           >
             <Download className="w-4 h-4 mr-2" />
             npm install doc-extract
@@ -39,7 +44,10 @@ export function Hero() {
             size="lg"
             variant="outline"
             className="border-slate-600 text-slate-300 hover:bg-slate-800"
-            onClick={() => window.open(details.repo, "_blank")}
+            onClick={() => {
+              posthog.capture("github-repo-clicked");
+              window.open(details.repo, "_blank");
+            }}
           >
             <Github className="w-4 h-4 mr-2" />
             View on GitHub

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Copy, ExternalLink, Layers, Search, Server } from "lucide-react";
 import { details } from "./const_data/config";
+import posthog from "posthog-js";
 
 const examples = [
   {
@@ -165,11 +166,29 @@ export function Examples() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="secondary">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => {
+                            posthog.capture("example-code-clicked", {
+                              example: example.id,
+                            });
+                            navigator.clipboard.writeText(example.code);
+                          }}
+                        >
                           <Copy className="w-4 h-4 mr-1" />
                           Copy
                         </Button>
-                        <Button size="sm" variant="secondary">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => {
+                            posthog.capture("example-open-clicked", {
+                              example: example.id,
+                            });
+                            window.open(details.repo, "_blank");
+                          }}
+                        >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           Open
                         </Button>
@@ -212,6 +231,9 @@ export function Examples() {
                 <Button
                   className="bg-primary text-primary-foreground hover:bg-primary/90"
                   onClick={() => {
+                    posthog.capture("readme-clicked", {
+                      readme: details.readme,
+                    });
                     window.open(details.readme, "_blank");
                   }}
                 >
@@ -222,6 +244,9 @@ export function Examples() {
                   variant="outline"
                   className="border-border text-foreground hover:bg-muted"
                   onClick={() => {
+                    posthog.capture("github-repo-clicked", {
+                      github: details.repo,
+                    });
                     window.open(details.repo, "_blank");
                   }}
                 >
