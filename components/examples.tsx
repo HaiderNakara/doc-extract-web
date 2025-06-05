@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Copy, ExternalLink, Layers, Search, Server } from "lucide-react";
+import { details } from "./const_data/config";
 
 const examples = [
   {
@@ -208,13 +209,21 @@ export function Examples() {
                 on GitHub.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  onClick={() => {
+                    window.open(details.readme, "_blank");
+                  }}
+                >
                   <ExternalLink className="w-4 h-4 mr-2" />
                   View Documentation
                 </Button>
                 <Button
                   variant="outline"
                   className="border-border text-foreground hover:bg-muted"
+                  onClick={() => {
+                    window.open(details.repo, "_blank");
+                  }}
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
                   GitHub Repository
